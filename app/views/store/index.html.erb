@@ -1,0 +1,14 @@
+<h1>Your Product List</h1>
+
+<% for p in @products -%>
+	<div class="entry">
+		Image
+		<h3><%=h p.title %></h3>
+		<%= p.description %>
+		<div class="price-line">
+			<span class="price"><%= number_to_currency(p.price) %></span>
+			<div><%= button_to "Add to Cart", :action => 'add_to_cart', :id => p %></div>
+		</div>
+	</div>
+<% end -%>
+
