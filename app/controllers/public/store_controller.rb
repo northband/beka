@@ -1,4 +1,4 @@
-class StoreController < ApplicationController
+class Public::StoreController < Public::MainController
 
   before_filter :find_cart, :except => :empty_cart
 

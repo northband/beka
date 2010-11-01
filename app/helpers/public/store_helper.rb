@@ -1,4 +1,4 @@
-module StoreHelper
+module Public::StoreHelper
   
   def hidden_div_if(condition, attributes = {}, &block)
     if condition

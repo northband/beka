@@ -13,20 +13,22 @@ class ProductTest < ActiveSupport::TestCase
     assert product.errors.invalid?(:price)
   end
   
-  test "positive_price" do
-    product = Product.new(:title => "My book title", :description => 'My description')
+  test "valid price" do
+    product = Product.new(:title => "Test Book",
+                          :description => products(:ruby_book).description,
+                          :price => products(:ruby_book).price
+              )
+    assert product.valid?, "price needs to be greater than 0.01"
 
-    product.price = -1
-    assert !product.valid?
-    assert_equal "should be at least 0.01", product.errors.on(:price)
-
-    product.price = 0
-    assert !product.valid?
-    assert_equal "should be at least 0.01", product.errors.on(:price)
-
-    product.price = 1
-    assert product.valid?
-
+  end
+  
+  test "unique title" do
+    product = Product.new(:title => products(:ruby_book).title,
+                          :description => "test description",
+                          :price => 1
+              )
+    assert !product.save
+    assert_equal "has already been taken", product.errors.on(:title)
   end
 
 end

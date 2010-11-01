@@ -1,7 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 ruby_book:
-  title: Programming Ruby
-  description: Dummy Description
-  price: 1234
-  
+  title:        Programming Ruby
+  description:  Info on programming the Ruby language
+  price:        1
+
+mystery_book:
+  title:        Murder on the Orient
+  description:  Murder takes place on a train
+  price:        5
+

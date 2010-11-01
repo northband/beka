@@ -1,12 +1,33 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users
+
+  # Resource routes
   map.resources :line_items
-  map.resources :orders
-  map.resources :products
-  map.resources :store
+
+  map.namespace :admin do |admin|
+    admin.resources :products
+    admin.resources :users
+    admin.resources :orders
+  end
+
+  # Admin Routes
+  #map.connect 'admin/exports/:action/:id', :controller => 'admin/exports'
+  map.connect 'admin/:action/:id',          :controller => 'admin/main'
+  # Set up admin root route.
+  map.admin_root 'admin', :controller => 'admin/main'
+
+  # Store Routes
+  map.connect 'store/:action/:id', :controller => 'public/store'
+  map.connect ':action/:id', :controller => 'public/main'
+
   
-  
-  
+  # Root Route
+  map.root :controller => '/public/main', :action => 'index'
+
+  # Default Routes
+  #map.connect ':controller/:action/:id'
+  #map.connect ':controller/:action/:id.:format'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -46,6 +67,5 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
   # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  
 end

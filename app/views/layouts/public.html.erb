@@ -13,22 +13,17 @@
   </div>
   <div id="columns">
     <div id="side">
-      
+
       <% if @cart %>
         <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
           <%= render :partial => 'cart', :object => @cart %>
         <% end %>
       <% end %>
-      
-      <% if session[:user_id] %>
-        <br />
-        <%= link_to "Orders", :controller => 'orders' %><br />
-        <%= link_to "Users", :controller => 'users' %><br />
-        <br /><br />
-        <%= link_to "Logout", :controller => 'admin', :action => 'logout' %><br />
-      <% end %>
-      
-      <%= link_to 'Store', :controller => 'store' %><br />
+
+      <%= link_to 'Home', :controller => '/public/main' %><br />
+      <%= link_to 'Store', :controller => '/public/store', :action => 'index' %><br />
+      <%= link_to 'About Us', :controller => '/public/main', :action => 'about_us' %><br />
+      <%= link_to 'Contact Us', :controller => '/public/main', :action => 'contact_us' %><br />
 
     </div>
     <div id="main">

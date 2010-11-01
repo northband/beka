@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < Admin::MainController
   # GET /products
   # GET /products.xml
   def index
