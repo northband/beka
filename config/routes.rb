@@ -15,11 +15,10 @@ ActionController::Routing::Routes.draw do |map|
   # Set up admin root route.
   map.admin_root 'admin', :controller => 'admin/main'
 
-  # Store Routes
+  # Public Routes
   map.connect 'store/:action/:id', :controller => 'public/store'
   map.connect ':action/:id', :controller => 'public/main'
 
-  
   # Root Route
   map.root :controller => '/public/main', :action => 'index'
 

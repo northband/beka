@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class AdminControllerTest < ActionController::TestCase
+class Admin::MainControllerTest < ActionController::TestCase
 
   fixtures :users
 
   test "index" do
     get :index
-    assert_redirected_to :controller => "admin", :action => "login"
+    assert_redirected_to :controller => "/admin/main", :action => "login"
     assert_equal "Please log in", flash[:notice]
   end
   
@@ -19,7 +19,7 @@ class AdminControllerTest < ActionController::TestCase
   test "login" do
     adam = users(:adam)
     post :login, :name => adam.name, :password => 'secret'
-    assert_redirected_to :action => "index"
+    assert_redirected_to :controller => '/admin/main', :action => "index"
     assert_equal adam.id, session[:user_id]
   end
 

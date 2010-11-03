@@ -1,0 +1,26 @@
+<h2>Your Cart</h2>
+
+
+<table>
+	<tr>
+		<th>Qty</th>
+		<th>Name</th>
+		<th>Price</th>
+	</tr>
+	<%= render :partial => 'cart_item', :collection => @cart.cart_items %>
+
+	<tr class="total-line">
+		<td colspan="2">Total</td>
+		<td class="total-cell"><%= number_to_currency(@cart.total_price) %></td>
+	</tr>
+</table>
+
+Total Items: <%= @cart.total_items %> 
+
+
+
+<%= button_to 'Empty Cart', :action => :empty_cart %>
+
+<%= button_to 'Checkout', :action => :checkout %>
+
+<%= button_to 'Keep Shopping', :action => :index %>

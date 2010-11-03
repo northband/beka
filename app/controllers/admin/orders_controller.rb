@@ -1,6 +1,5 @@
 class Admin::OrdersController < Admin::MainController
-  # GET /orders
-  # GET /orders.xml
+
   def index
     @orders = Order.all
 
@@ -10,8 +9,6 @@ class Admin::OrdersController < Admin::MainController
     end
   end
 
-  # GET /orders/1
-  # GET /orders/1.xml
   def show
     @order = Order.find(params[:id])
 
@@ -21,8 +18,6 @@ class Admin::OrdersController < Admin::MainController
     end
   end
 
-  # GET /orders/new
-  # GET /orders/new.xml
   def new
     @order = Order.new
 
@@ -32,13 +27,10 @@ class Admin::OrdersController < Admin::MainController
     end
   end
 
-  # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
   end
 
-  # POST /orders
-  # POST /orders.xml
   def create
     @order = Order.new(params[:order])
 
@@ -53,8 +45,6 @@ class Admin::OrdersController < Admin::MainController
     end
   end
 
-  # PUT /orders/1
-  # PUT /orders/1.xml
   def update
     @order = Order.find(params[:id])
 
@@ -69,8 +59,6 @@ class Admin::OrdersController < Admin::MainController
     end
   end
 
-  # DELETE /orders/1
-  # DELETE /orders/1.xml
   def destroy
     @order = Order.find(params[:id])
     @order.destroy

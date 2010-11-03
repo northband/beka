@@ -1,28 +1,27 @@
-class Cart
+class Cart < ActiveRecord::Base
 
-  attr_reader :items
-  
-  def initialize
-    @items = []
-  end
+  has_many :cart_items
 
   def add_product(product)
-    current_item = @items.find {|item| item.product == product}
+    current_item = self.cart_items.find_by_product_id(product.id)
     if current_item
-      current_item.increment_quantity
+      item = current_item
+      item.increment_quantity
+      item.save!
     else
-      current_item = CartItem.new(product)
-      @items << current_item
+      item = CartItem.new
+      item.product = product
+      self.cart_items << item
     end
     current_item
   end
-  
+
   def total_price
-    @items.sum { |item| item.price }
+    self.cart_items.collect{ |item| (item.product.price * item.quantity) }.sum
   end
 
   def total_items
-    @items.sum { |item| item.quantity }
+    cart_items.collect{ |item| item.quantity }.sum
   end
 
 end

@@ -1,22 +1,16 @@
-class CartItem
+class CartItem < ActiveRecord::Base
 
-  attr_reader :product, :quantity
-  
-  def initialize(product)
-    @product = product
-    @quantity = 1
-  end
+  belongs_to :cart, :dependent => :destroy
+  belongs_to :order
+  belongs_to :product
   
   def increment_quantity
-    @quantity += 1
+    self.quantity += 1
+    self.save!
   end
-  
-  def title
-    @product.title
-  end
-  
+ 
   def price
-    @product.price * @quantity
+    self.product.price * self.quantity
   end
 
 end

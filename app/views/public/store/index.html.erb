@@ -3,12 +3,12 @@
 <% for p in @products -%>
 	<div class="entry">
 		Image
-		<h3><%=h p.title %></h3>
+		<h3><%= link_to h(p.title), :action => 'view', :id => p %></h3>
 		<%= p.description %>
 		<div class="price-line">
 			<span class="price"><%= number_to_currency(p.price) %></span>
 			<div>
-          <% form_remote_tag :url => { :action => 'add_to_cart', :id => p } do %>
+          <% form_tag({:action => 'add_to_cart', :id => p }) do %>
             <%= submit_tag "Add to Cart" %>
           <% end %>
       </div>

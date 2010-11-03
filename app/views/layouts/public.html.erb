@@ -13,18 +13,10 @@
   </div>
   <div id="columns">
     <div id="side">
-
-      <% if @cart %>
-        <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
-          <%= render :partial => 'cart', :object => @cart %>
-        <% end %>
-      <% end %>
-
       <%= link_to 'Home', :controller => '/public/main' %><br />
       <%= link_to 'Store', :controller => '/public/store', :action => 'index' %><br />
       <%= link_to 'About Us', :controller => '/public/main', :action => 'about_us' %><br />
       <%= link_to 'Contact Us', :controller => '/public/main', :action => 'contact_us' %><br />
-
     </div>
     <div id="main">
       <!-- START_HIGHLIGHT -->

@@ -4,29 +4,35 @@ class Public::StoreController < Public::MainController
 
   def index
     @products = Product.find_products_for_sale
-    @cart = find_cart
   end
 
   def add_to_cart
+    begin
       product = Product.find(params[:id])
-      @current_item = @cart.add_product(product)
-      respond_to do |format|
-        format.js if request.xhr?
-        format.html { redirect_to_index}
-      end
+      @cart.add_product(product)
+      redirect_to :action => 'cart', :id => params[:id]
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid product #{params[:id]}")
       flash[:notice] = "Invalid product"
       redirect_to_index('Invalid product')
+    end
+  end
+  
+  def view
+    @product = Product.find(params[:id])
+  end
+  
+  def cart
   end
   
   def empty_cart
-    session[:cart] = nil
+    @cart = Cart.find(session[:cart_id]).destroy
+    session[:cart_id] = nil
     redirect_to_index
   end
   
   def checkout
-    if @cart.items.empty?
+    if @cart.cart_items.empty?
       redirect_to_index("Your cart is empty?")
     else
       @order = Order.new
@@ -37,22 +43,28 @@ class Public::StoreController < Public::MainController
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(@cart)
     if @order.save
-      session[:cart] = nil
+      @cart.destroy
+      session[:cart_id] = nil
       redirect_to_index("Thank you for your order")
     else
       render :action => 'checkout'
     end
   end
 
-protected
+  protected
 
     def authorize
     end
 
-private
+  private
   
   def find_cart
-    @cart = (session[:cart] ||= Cart.new)
+    @cart = if session[:cart_id]
+      Cart.find(session[:cart_id]) || Cart.create
+    else
+      Cart.create
+    end
+    session[:cart_id] = @cart.id if session[:cart_id].blank?
   end
   
   def redirect_to_index(msg = nil)

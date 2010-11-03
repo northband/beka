@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
 
   has_many :line_items
+  has_many :cart_items
 
   validates_presence_of :title, :description
   validates_numericality_of :price

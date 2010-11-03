@@ -18,7 +18,7 @@ class Admin::MainController < ApplicationController
       user = User.authenticate(params[:name], params[:password])
       if user
         session[:user_id] = user.id
-        redirect_to(:controller => '/admin', :action => "index")
+        redirect_to(:controller => '/admin/main', :action => "index")
       else
         flash.now[:notice] = "Invalid user/password combination"
       end
@@ -30,7 +30,6 @@ class Admin::MainController < ApplicationController
     flash[:notice] = "Logged out"
     redirect_to(:action => "login")
   end
-
 
   protected
 

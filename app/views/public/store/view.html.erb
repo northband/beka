@@ -1,0 +1,9 @@
+<h1>Your Product List</h1>
+
+<div><%=h @product.title %></div>
+<div><%= @product.description %></div>
+<div class="price"><%= number_to_currency(@product.price) %></div>
+
+<% form_tag({:action => 'add_to_cart', :id => @product }) do %>
+  <%= submit_tag "Add to Cart" %>
+<% end %>
