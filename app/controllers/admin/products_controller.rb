@@ -20,11 +20,7 @@ class Admin::ProductsController < Admin::MainController
 
   def new
     @product = Product.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @product }
-    end
+    @product.product_images.build
   end
 
   def edit
@@ -32,18 +28,19 @@ class Admin::ProductsController < Admin::MainController
   end
 
   def create
-    @product = Product.new(params[:product])
-
-    respond_to do |format|
+    if request.post?
+      @product = Product.new(params[:product])
       if @product.save
-        format.html { redirect_to(@product, :notice => 'Product was successfully created.') }
-        format.xml  { render :xml => @product, :status => :created, :location => @product }
+        redirect_to :action => 'index'
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @product.errors, :status => :unprocessable_entity }
+         render :action => "new"
       end
     end
   end
+
+
+
+
 
   def update
     @product = Product.find(params[:id])

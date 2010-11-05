@@ -5,9 +5,7 @@
   <% @products.each do |product| %>
     <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
 
-      <td>
-        image
-      </td>
+      <td><%= image_tag product.product_images.first.photo.url(:small) unless product.product_images.empty? %></td>
 
       <td class="list-description">
         <dl>
@@ -18,9 +16,9 @@
       </td>
 
       <td class="list-actions">
-        <%= link_to 'Show', product %><br/>
-        <%= link_to 'Edit', edit_product_path(product) %><br/>
-        <%= link_to 'Destroy', product, 
+        <%#= link_to 'Show', product %><br/>
+        <%#= link_to 'Edit', edit_product_path(product) %><br/>
+        <%#= link_to 'Destroy', product, 
                     :confirm => 'Are you sure?',
                     :method => :delete %>
       </td>
@@ -31,4 +29,4 @@
 
 <br />
 
-<%= link_to 'New product', new_product_path %>
+<%#= link_to 'New product', new_product_path %>

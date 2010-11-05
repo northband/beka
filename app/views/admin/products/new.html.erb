@@ -1,6 +1,7 @@
 <h1>New product</h1>
 
-<% form_for(@product) do |f| %>
+<% form_for(@product, :url => url_for(:action => 'create'), :html => {:multipart => true}) do |f| -%>
+
   <%= f.error_messages %>
 
   <p>
@@ -15,9 +16,21 @@
     <%= f.label :price %><br />
     <%= f.text_area :price %>
   </p>
+
+
+	<% f.fields_for :product_images do |builder| %>
+		<p>
+			<%= builder.label :photo, "Image File" %>
+			<%= builder.file_field :photo %>
+		</p>
+	<% end -%>
+
+
+
+
   <p>
     <%= f.submit 'Create' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', products_path %>
+<%#= link_to 'Back', products_path %>

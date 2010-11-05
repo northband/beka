@@ -10,7 +10,7 @@ class Admin::MainController < ApplicationController
   filter_parameter_logging :password
 
   def index
-    @total_orders = Order.count
+    #@total_orders = Order.count
   end
 
   def login

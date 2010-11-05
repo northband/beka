@@ -1,0 +1,14 @@
+*~
+.DS_Store
+config/*.sphinx.conf
+config/database.yml
+config/s3.yml
+config/environments/development.rb
+db/schema.rb
+db/schema.sql
+db/sphinx/*
+log/*
+public/system/sitemap*.xml.gz
+tmp/*
+.ruby_inline
+
