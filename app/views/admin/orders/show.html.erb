@@ -1,3 +1,17 @@
+<h1>Order #<%= @order.id %> (<%= @order.name %>)</h1>
+
+<table>
+<tr>
+	<th></th>
+	<th>Qty</th>
+	<th>Name</th>
+	<th>Price</th>
+</tr>
+<%= render :partial => 'line_item', :collection => @order.line_items %>
+</table>
+
+<hr size="1" color="#DDDDDD" />
+
 <p>
   <b>Name:</b>
   <%=h @order.name %>
@@ -18,6 +32,17 @@
   <%=h @order.pay_type %>
 </p>
 
+<p>
+  <b>Shipped:</b>
+  <%= @order.shipped_on ? @order.shipped_on.strftime("%m/%d/%Y") : "No" %>
+</p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<p>
+  <b>Archived?:</b>
+  <%= @order.is_active? ? "No" : "Yes" %>
+</p>
+
+<hr size="1" color="#DDD" />
+
+<%= link_to 'Edit', edit_admin_order_path(@order) %> |
+<%= link_to 'Back', admin_orders_path %>

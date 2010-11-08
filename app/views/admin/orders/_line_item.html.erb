@@ -1,0 +1,7 @@
+<tr>
+	<td><%= line_item.product.product_images.first.photo.url(:small) ? image_tag(line_item.product.product_images.first.photo.url(:small)) : image_tag("no_image_small.jpg", :class => 'thumbnail') %></td>
+	<td><%= line_item.quantity.blank? ? 1 : line_item.quantity %></td>
+	<td><%=h line_item.product.title %><br/>
+		<%= truncate(line_item.product.description, :length => 80) %></td>
+	<td><%= number_to_currency(line_item.product.price) %></td>
+</tr>

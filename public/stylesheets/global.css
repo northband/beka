@@ -1,0 +1,359 @@
+/* Global styles */
+
+body {
+  font: 90% sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size:  150%;
+  color: #555;
+  border-bottom: 1px solid #999;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table tr td {
+  padding: 5px;
+  vertical-align: top;
+}
+
+table tr th {
+  padding: 5px;
+  vertical-align: top;
+  text-align: left;
+}
+
+form th {
+  min-width: 100px;
+  text-align: right;
+  padding: 10px 0 0 0;
+}
+form td {
+  padding: 10px 0 0 0;
+}
+form .text_label {
+  vertical-align: top;
+}
+
+#notice {
+  border: 2px solid #CCC;
+  padding: 1em;
+  margin-bottom: 2em;
+  margin-right: 2em;
+  background-color: #EEE;
+  font: bold smaller sans-serif;
+}
+
+#error {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #FFDDDD;
+  font: bold smaller sans-serif;
+}
+
+
+.add_link {
+  background-image: url("../images/icons/add.png");
+  background-repeat: no-repeat;
+  padding: 0 0 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+/* Public Layout */
+#main_heading {
+  background: #EEE;
+  padding: 10px;
+  border-bottom: 2px solid;
+  color: #000;
+  text-align: left;
+}
+#main_heading #logo_title {
+  float: left;
+  font: small-caps 40px/40px arial, serif;
+}
+#main_heading #cart_info {
+  float: right;
+  font-size: 80%;
+}
+
+
+
+.clear {
+  clear: both;
+}
+
+#columns {
+  background: #FFF;
+}
+
+#side {
+  float: left;
+  padding: 1em;
+  width: 12em;
+  min-height: 35em;
+  background: #EEE;
+}
+
+#main {
+  margin-left: 13em;
+  padding-top: 4ex;
+  padding-left: 2em;
+  padding-bottom: 10em;
+  background: white;
+  max-width: 800px;
+}
+
+
+
+#side a {
+  color: #000;
+  font-size: small;
+}
+
+#side #navigation {
+  margin: 0;
+  padding: 0;
+}
+
+#side #navigation li {
+  list-style: none;
+  margin: 10px 0 0 0;
+}
+
+
+
+
+
+/* Styles for products/index */
+#product-list table {
+        border-collapse: collapse;
+}
+
+#product-list table tr td {
+        padding: 5px;
+        vertical-align: top;
+}
+
+#product-list .list-image {
+  padding: 5px;
+}
+
+#product-list .list-description {
+  width:        60%;
+}
+
+#product-list .list-description dl {
+        margin: 0;
+}
+
+#product-list .list-description dt {
+	color:        #244;
+	font-weight:  bold;
+	font-size:    larger;
+}
+
+#product-list .list-description dd {
+        margin: 0;
+}
+
+#product-list .list-actions {
+  text-align:   right;
+  padding-left:  1em;
+  padding-right: 1em;
+}
+#product-list .list-actions div {
+  margin: 5px 0;
+}
+
+#product-list .even {
+  background:   #FFF;
+}
+
+#product-list .odd {
+  background:   #EEE;
+}
+
+
+
+
+.thumbnail {
+  max-width: 100px;
+  max-height: 100px;
+  border: 0;
+}
+
+
+
+
+
+/* An entry in the store catalog */
+
+#store  .entry {
+  overflow: auto;
+  margin-top: 1em;
+  border-bottom: 1px dotted #77d;
+}
+
+#store .entry img {
+  width: 75px;
+  float: left;
+}
+
+#store  .title {
+  font-size: 120%;
+  font-family: sans-serif;
+}
+
+#store .entry h3 {
+ margin-top: 0;
+ margin-bottom: 2px;
+ color: #227;
+}
+
+#store .entry p {
+ margin-top: 0.5em; 
+ margin-bottom: 0.8em; 
+}
+
+#store .entry .price-line {
+ clear: both;
+}
+
+#store .entry .add-to-cart {
+  position: relative;
+}
+
+#store .entry  .price {
+  color: #44a;
+  font-weight: bold;
+  margin-right: 2em;
+}
+.price {
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+
+
+#store .entry form, #store .entry form div {
+  display: inline;
+}
+
+.cart-title {
+  font: 120% bold;
+}
+
+.item-price, .total-line {
+  text-align: right;
+}
+
+.total-line .total-cell {
+  font-weight: bold;
+  border-top: 1px solid #595;
+}
+/* END:cartmain */
+
+/* START:cartside */
+/* Styles for the cart in the sidebar */
+
+#cart, #cart table {
+  font-size: smaller;
+  color:     white;
+}
+
+#cart table {
+  border-top:    1px dotted #595;
+  border-bottom: 1px dotted #595;
+  margin-bottom: 10px;
+}
+/* END:cartside */
+
+/* START:form */
+/* Styles for order form */
+
+.depot-form fieldset {
+  background: #efe;
+}
+
+.depot-form legend {
+  color: #dfd;
+  background: #141;
+  font-family: sans-serif;
+  padding: 0.2em 1em;
+}
+
+.depot-form label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  padding-top: 0.2em;
+  margin-right: 0.1em;
+  display: block;
+}
+
+.depot-form select, .depot-form textarea, .depot-form input {
+  margin-left: 0.5em;
+}
+
+.depot-form .submit {
+  margin-left: 4em;
+}
+
+.depot-form div {
+  margin: 0.5em 0;
+}
+/* END:form */
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: #EEFFEE;
+  display: inline;
+}
+
+.fieldWithErrors * {
+  background-color: red;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

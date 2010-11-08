@@ -9,6 +9,14 @@ class Public::MainController < ApplicationController
   end
 
   def contact_us
+    if request.post?
+      message = {:name => params[:name], :email => params[:email], :message => params[:message]}
+      if Mailman.deliver_contact_us(message)
+        flash[:notice] = "Message sent"
+      else
+        flash[:notice] = "Message not sent - please try again"
+      end
+    end
   end
 
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101105002228) do
+ActiveRecord::Schema.define(:version => 20101108180902) do
 
   create_table "cart_items", :force => true do |t|
     t.integer  "product_id"
@@ -40,10 +40,12 @@ ActiveRecord::Schema.define(:version => 20101105002228) do
     t.string   "pay_type",   :limit => 10
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",                :default => false
+    t.datetime "shipped_on"
   end
 
   create_table "product_images", :force => true do |t|
-    t.integer  "trip_id"
+    t.integer  "product_id"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -64,6 +66,7 @@ ActiveRecord::Schema.define(:version => 20101105002228) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
 end

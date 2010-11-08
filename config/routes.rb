@@ -1,26 +1,25 @@
 ActionController::Routing::Routes.draw do |map|
 
-  # Resource routes
-  map.resources :line_items
-
+  # Admin Routes
   map.namespace :admin do |admin|
     admin.resources :products
     admin.resources :users
     admin.resources :orders
   end
-
-  # Admin Routes
-  #map.connect 'admin/exports/:action/:id', :controller => 'admin/exports'
   map.connect 'admin/:action/:id',          :controller => 'admin/main'
-  # Set up admin root route.
   map.admin_root 'admin', :controller => 'admin/main'
 
   # Public Routes
   map.connect 'store/:action/:id', :controller => 'public/store'
   map.connect ':action/:id', :controller => 'public/main'
 
+  # Resource routes
+  map.resources :line_items
+
   # Root Route
   map.root :controller => '/public/main', :action => 'index'
+
+
 
   # Default Routes
   #map.connect ':controller/:action/:id'

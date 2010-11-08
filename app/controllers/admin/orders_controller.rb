@@ -1,71 +1,35 @@
 class Admin::OrdersController < Admin::MainController
 
   def index
-    @orders = Order.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @orders }
+    @orders = if params[:archived]
+      Order.inactive.find(:all, :order => 'created_at DESC').paginate(:page => params[:page])
+    else
+      Order.active.find(:all, :order => 'created_at DESC').paginate(:page => params[:page])
     end
   end
 
   def show
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @order }
-    end
-  end
-
-  def new
-    @order = Order.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @order }
-    end
   end
 
   def edit
     @order = Order.find(params[:id])
   end
 
-  def create
-    @order = Order.new(params[:order])
-
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
   def update
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to(@order, :notice => 'Order was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
-      end
+    if @order.update_attributes(params[:order])
+      redirect_to admin_orders_path
+      flash[:notice] = 'Order was successfully updated.'
+    else
+      render :action => "edit"
     end
   end
 
   def destroy
     @order = Order.find(params[:id])
     @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(orders_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to(admin_orders_url)
   end
+
 end

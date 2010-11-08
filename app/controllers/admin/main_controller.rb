@@ -10,17 +10,17 @@ class Admin::MainController < ApplicationController
   filter_parameter_logging :password
 
   def index
-    #@total_orders = Order.count
+    @total_orders = Order.active.count
   end
 
   def login
     if request.post?
-      user = User.authenticate(params[:name], params[:password])
+      user = User.authenticate(params[:email], params[:password])
       if user
         session[:user_id] = user.id
         redirect_to(:controller => '/admin/main', :action => "index")
       else
-        flash.now[:notice] = "Invalid user/password combination"
+        flash.now[:notice] = "Invalid email/password combination"
       end
     end
   end

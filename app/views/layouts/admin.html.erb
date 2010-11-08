@@ -2,38 +2,35 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-  <title>Pragprog Books Online Store</title>
-  <%= stylesheet_link_tag "depot", :media => "all" %>
+  <title>Sample Online Store</title>
+  <%= stylesheet_link_tag "global", :media => "all" %>
   <%= javascript_include_tag :defaults %>
 </head>
 <body id="store">
-  <div id="banner">
-    <%= image_tag("logo.png") %>
-    <%= @page_title || "Pragmatic Bookshelf" %>
-  </div>
+  <div id="main_heading">
+    <div id="logo_title">
+      Sample Online Store
+    </div>
+    <div class="clear"></div>
+  </div>  
   <div id="columns">
     <div id="side">
-      
-      <% if session[:user_id] %>
-        <br />
-        <%= link_to "Orders", :controller => '/admin/orders' %><br />
-        <%= link_to "Users", :controller => '/admin/users' %><br />
-        <br /><br />
-        <%= link_to "Logout", :controller => '/admin/main', :action => 'logout' %><br />
-      <% end %>
-      
-      <%= link_to 'Store', :controller => '/public/store' %><br />
-
+      <% if session[:user_id] -%>
+      <ul id="navigation">
+        <li><%= link_to "Orders (#{Order.active.count} active)", :controller => '/admin/orders' %></li>
+        <li>&nbsp;</li>
+        <li><%= link_to "Products", :controller => '/admin/products' %> (<%= link_to "+Add", :controller => '/admin/products', :action => 'new' %>)</li>
+        <li><%= link_to "Manage Users", :controller => '/admin/users' %></li>
+        <li><%= link_to 'Enter Store', {:controller => '/public/main'}, :target => '_blank' %></li>
+        <li>&nbsp;</li>
+        <li><%= link_to "Logout", :controller => '/admin/main', :action => 'logout' %></li>
+      </ul>
+      <% end -%>
     </div>
     <div id="main">
-      <!-- START_HIGHLIGHT -->
-      <!-- START:flash -->
       <% if flash[:notice] -%>
         <div id="notice"><%= flash[:notice] %></div>
       <% end -%>
-      <!-- END:flash -->
-      <!-- END_HIGHLIGHT -->
-
       <%= yield :layout %>
     </div>
   </div>

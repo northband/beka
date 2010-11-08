@@ -1,3 +1,5 @@
+<%= image_tag(@product.product_images.first.photo.url(:large)) %>
+
 <p>
   <b>Title:</b>
   <%=h @product.title %>
@@ -13,7 +15,4 @@
   <%=h @product.price %>
 </p>
 
-
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Edit', edit_admin_product_path(@product) %> | <%= link_to "Back", :action => 'index' %>

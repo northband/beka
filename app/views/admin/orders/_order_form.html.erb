@@ -1,0 +1,33 @@
+<% form_for(@order, :url => url) do |f| -%>
+
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_area :address, :rows => 3 %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :pay_type, "Pay with" %><br />
+    <%= f.select :pay_type, Order::PAYMENT_TYPES, :prompt => "Select a payment method" %>
+  </p>
+  <p>
+    Shipped On<br />
+    <%= f.date_select(:shipped_on, :include_blank => true) %>
+  </p>
+  <p>
+    Archived<br />
+    <%= f.radio_button :is_active, false %> Yes
+    <%= f.radio_button :is_active, true %> No
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

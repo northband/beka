@@ -1,36 +1,5 @@
 <h1>New product</h1>
 
-<% form_for(@product, :url => url_for(:action => 'create'), :html => {:multipart => true}) do |f| -%>
+<%= render :partial => 'product_form', :locals => {:url => admin_products_path} %>
 
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :price %><br />
-    <%= f.text_area :price %>
-  </p>
-
-
-	<% f.fields_for :product_images do |builder| %>
-		<p>
-			<%= builder.label :photo, "Image File" %>
-			<%= builder.file_field :photo %>
-		</p>
-	<% end -%>
-
-
-
-
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%#= link_to 'Back', products_path %>
+<%= link_to 'Back', admin_products_path %>

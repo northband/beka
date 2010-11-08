@@ -1,26 +1,25 @@
-<h2>Your Cart</h2>
+<h1>Your Cart</h1>
 
-
-<table>
-	<tr>
-		<th>Qty</th>
-		<th>Name</th>
-		<th>Price</th>
-	</tr>
-	<%= render :partial => 'cart_item', :collection => @cart.cart_items %>
-
-	<tr class="total-line">
-		<td colspan="2">Total</td>
-		<td class="total-cell"><%= number_to_currency(@cart.total_price) %></td>
-	</tr>
+<table width="100%">
+<tr>
+	<th></th>
+	<th>Qty</th>
+	<th>Name</th>
+	<th>Price</th>
+</tr>
+<%= render :partial => 'cart_item', :collection => @cart.cart_items %>
+<tr>
+	<td style="border-bottom: 1px solid #DDD;" colspan="4"></td>
+</tr>
+<tr>
+	<td colspan="3" style="text-align:right;"></td>
+	<td><p>Total Items: <b><%= @cart.total_items %></b></p>
+		<p>Total Price: <b><%= number_to_currency(@cart.total_price) %></b></p>
+		<%= button_to 'Checkout', :action => :checkout %>
+	</td>
+</tr>
 </table>
 
-Total Items: <%= @cart.total_items %> 
-
-
-
-<%= button_to 'Empty Cart', :action => :empty_cart %>
-
-<%= button_to 'Checkout', :action => :checkout %>
-
-<%= button_to 'Keep Shopping', :action => :index %>
+<p><%= button_to 'Keep Shopping', :action => :index %></p>
+<br/>
+<p><%= button_to 'Empty Cart', :action => :empty_cart %></p>
