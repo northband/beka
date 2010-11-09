@@ -6,7 +6,8 @@
 		<tr class="<%= cycle('odd', 'even') %>">
 			<td class="list-image">
 				<% unless product.product_images.empty? -%>
-					<%= link_to image_tag(product.product_images.first.photo.url(:small)), admin_product_path(product) %>
+					<%= link_to image_tag(product.product_images.first.photo.url(:small)), admin_product_path(product) %><br/>
+					<small>(<%= product.product_images.count %> images)</small>
 				<% else -%>
 					<%= link_to image_tag("no_image_small.jpg", :class => 'thumbnail'), admin_product_path(product) %>
 				<% end -%></td>
@@ -19,6 +20,8 @@
 				<div><%= link_to 'Show', admin_product_path(product), :class => 'list-action-link' %></div>
 				<div><%= link_to 'Edit', edit_admin_product_path(product), :class => 'list-action-link' %></div>
 				<div><%= link_to 'Destroy', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete, :class => 'list-action-link' %></div>
+				<div><%= link_to 'Images', new_admin_product_image_path(:id => product), :class => 'list-action-link' %></div>
+
 		</tr>
 	<% end %>
 	</table>

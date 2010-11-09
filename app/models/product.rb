@@ -9,7 +9,8 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :title
   validate :price_must_be_at_least_a_cent
 
-  accepts_nested_attributes_for :product_images #, :reject_if => lambda { |t| t['product_image'].nil? }
+  # Temporarily commenting out the ability to have photos nested in the form - too ugly at this time
+  #accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   def self.find_products_for_sale
     find(:all, :order => "title")

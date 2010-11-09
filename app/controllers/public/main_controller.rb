@@ -1,5 +1,7 @@
 class Public::MainController < ApplicationController
 
+  before_filter :find_cart, :except => :empty_cart
+
   layout 'public'
 
   def index
@@ -17,6 +19,17 @@ class Public::MainController < ApplicationController
         flash[:notice] = "Message not sent - please try again"
       end
     end
+  end
+
+  private
+
+  def find_cart
+    @cart = if session[:cart_id]
+      Cart.find(session[:cart_id]) || Cart.create
+    else
+      Cart.create
+    end
+    session[:cart_id] = @cart.id if session[:cart_id].blank?
   end
 
 end

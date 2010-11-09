@@ -1,36 +1,29 @@
-class Admin::ProductsController < Admin::MainController
-
-  def index
-    @products = Product.all.paginate(:page => params[:page])
-  end
+class Admin::ProductImagesController < Admin::MainController
 
   def show
-    @product = Product.find(params[:id])
-  end
-
-  def new
-    @product = Product.new
-    #@product.product_images.build
-    #3.times { @product.product_images.build }
+    @product_image = ProductImage.find(params[:id])
+    render :layout => 'simple'
   end
 
   def edit
     @product = Product.find(params[:id])
   end
-
-  def media
-    @product = Product.find(params[:id])
+  
+  def new
     @product_image = ProductImage.new
+    @product = Product.find(params[:id])
   end
 
   def create
     if request.post?
-      @product = Product.new(params[:product])
-      if @product.save
-        redirect_to :action => 'index'
-      else
-         render :action => "new"
-      end
+
+      @product_image = ProductImage.new(params[:product_image])
+      @product = Product.find(params[:id])
+      @product.product_images << @product_image
+      
+      flash[:notice] = "Image added"
+      redirect_to :action => 'new', :id => params[:id]
+      
     end
   end
 

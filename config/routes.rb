@@ -3,6 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   # Admin Routes
   map.namespace :admin do |admin|
     admin.resources :products
+    admin.resources :product_images
     admin.resources :users
     admin.resources :orders
   end

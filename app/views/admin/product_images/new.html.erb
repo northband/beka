@@ -1,0 +1,25 @@
+<h1>Attach Photos</h1>
+
+<% form_for(:product_image, :url => {:action => 'create'}, :html => {:multipart => true}) do |f| -%>
+<%= hidden_field_tag :id, params[:id] %>
+<%= f.error_messages %>
+<p>
+	<%= f.label :photo, "Image File" %>
+	<%= f.file_field :photo %>
+</p>
+<p>
+  <%= f.submit 'Submit' %>
+</p>
+<% end %>
+
+<hr/>
+
+<% @product.product_images.each do |i| -%>
+	<%= view_image(i) %><br />
+<% end -%>
+
+<br/>
+<%= link_to "&laquo; Back", admin_products_path %>
+
+
+

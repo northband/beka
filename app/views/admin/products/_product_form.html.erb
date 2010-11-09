@@ -12,14 +12,6 @@
   <%= f.label :price %><br />
   <%= f.text_field :price %>
 </p>
-
-<% f.fields_for :product_images do |builder| %>
-	<p>
-		<%= builder.label :photo, "Image File" %>
-		<%= builder.file_field :photo %>
-	</p>
-<% end -%>
-
 <p>
   <%= f.submit 'Submit' %>
 </p>
