@@ -1,0 +1,13 @@
+%tr
+  %td
+    = cart_item.product.product_images.first.photo.url(:small) ? image_tag(cart_item.product.product_images.first.photo.url(:small)) : image_tag("no_image_small.jpg", :class => 'thumbnail')
+  %td
+    = cart_item.quantity.blank? ? 1 : cart_item.quantity
+  %td
+    = cart_item.quantity.blank? ? 1 : cart_item.quantity 
+  %td
+    = h(cart_item.product.title)
+    %br/
+    = truncate(cart_item.product.description, :length => 80)
+  %td
+    = number_to_currency(cart_item.product.price)

@@ -1,0 +1,25 @@
+= link_to "Back", :action => 'index'
+
+%h1= "Product Details"
+
+- unless @product.product_images.blank?
+  %table
+    %tr
+      %td#image_frame
+        %div#images
+          - if @product.product_images.count.blank?
+            %img#large-image "/images/no_image.jpg"
+          - else
+            %div= image_tag(@product.product_images.first.photo.url(:large), :id => 'large-image', :alt => "", :title => "")
+          - unless @product.product_images.count.blank?
+            - if @product.product_images.count > 1
+              - @product.product_images.each_with_index do |image, i|
+                = image_tag image.photo.url(:small) , :class => "#{'active ' if i == 0}small-image", :id => "small-image-#{i+1}", :onclick => 'swap_image(this);return(false);'
+
+%h3= @product.title
+%div= @product.description
+%div.price= number_to_currency(@product.price)
+
+- form_tag({:action => 'add_to_cart', :id => @product }) do
+  = submit_tag "Add to Cart"
+  

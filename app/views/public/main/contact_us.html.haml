@@ -1,0 +1,25 @@
+%h1= "Contact Us"
+%p= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus, risus viverra fermentum porttitor, nibh ante ultrices sapien, vel scelerisque risus libero in mauris. Sed ornare faucibus turpis at posuere. Nulla vel eros justo. Donec fringilla tristique erat at luctus."
+%p= "Email form sample using Gmail SMTP"
+
+%form(method="POST") 
+  %table.form
+    %tr
+      %th
+        = label_tag "name", "Name"
+      %td
+        = text_field_tag "name", nil, :size => 30
+    %tr
+      %th
+        = label_tag "email", "Email"
+      %td
+        = text_field_tag "email", nil, :size => 30
+    %tr
+      %th.text_label
+        = label_tag "message", "Message"
+      %td
+        = text_area_tag "message", nil, :size => "50x5"
+    %tr
+      %th
+      %td
+        = submit_tag

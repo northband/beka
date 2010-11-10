@@ -1,0 +1,25 @@
+%h1= "Your Cart"
+
+%table(width="100%")
+  %tr
+    %th
+    %th= "Qty"
+    %th= "Name"
+    %th= "Price"
+  = render :partial => 'cart_item', :collection => @cart.cart_items
+  %tr
+    %td(style="border-bottom: 1px solid #DDD;" colspan="4")
+  %tr
+    %td(colspan="3" style="text-align: right;")
+    %td
+      %p
+        Total Items:
+        %b= @cart.total_items
+      %p
+        Total Price:
+        %b= number_to_currency(@cart.total_price)
+      = button_to 'Checkout', :action => :checkout
+
+%p= button_to 'Keep Shopping', :action => :index
+%br/
+%p= button_to 'Empty Cart', :action => :empty_cart
