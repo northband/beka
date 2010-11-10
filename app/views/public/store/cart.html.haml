@@ -1,11 +1,11 @@
-%h1= "Your Cart"
+%h1 Your Cart
 
 %table(width="100%")
   %tr
     %th
-    %th= "Qty"
-    %th= "Name"
-    %th= "Price"
+    %th Qty
+    %th Name
+    %th Price
   = render :partial => 'cart_item', :collection => @cart.cart_items
   %tr
     %td(style="border-bottom: 1px solid #DDD;" colspan="4")

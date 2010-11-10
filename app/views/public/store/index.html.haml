@@ -1,4 +1,4 @@
-%h1= "Your Product List"
+%h1 Your Product List
 - for p in @products
   %div.entry
     = link_to(p.product_images.first.photo.url(:small) ? image_tag(p.product_images.first.photo.url(:small)) : image_tag("no_image_small.jpg", :class => 'thumbnail'), :action => 'show', :id => p)

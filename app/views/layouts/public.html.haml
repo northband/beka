@@ -1,0 +1,40 @@
+!!!
+
+%html
+  %head
+    %title Sample Online Store
+    = stylesheet_link_tag "global", :media => "all"
+    = javascript_include_tag :defaults
+
+  %body#store
+
+    %div#main_heading
+      %div#logo_title Sample Online Store
+
+      - unless params[:action] == 'cart'
+        %div#cart_info
+          - unless @cart.cart_items.empty?
+            Total Items:
+            %b
+              = @cart.total_items
+              %br/
+            Total Price:
+            %b
+              = number_to_currency(@cart.total_price)
+              %br/
+              = link_to "View Cart", :action => 'cart'
+
+      %div.clear
+
+    %div#columns
+      %div#side
+        %ul#navigation
+          %li= link_to 'Home', :controller => '/public/main'
+          %li= link_to 'Store', :controller => '/public/store', :action => 'index'
+          %li= link_to 'About Us', :controller => '/public/main', :action => 'about_us'
+          %li= link_to 'Contact Us', :controller => '/public/main', :action => 'contact_us'
+      %div#main
+        - if flash[:notice]
+          %div#notice
+            = flash[:notice]
+        = yield :layout

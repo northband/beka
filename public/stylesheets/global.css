@@ -469,3 +469,11 @@ form .text_label {
 #images img.small-image.active {
 	border-color: #C00;
 }
+
+#simple_content {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid #CCC;
+  background-color: #FFF;
+  margin: 10px;
+}
