@@ -1,0 +1,31 @@
+<h1>Categories</h1>
+
+<table width="100%" border="1">
+<% @categories.each do |a| -%>
+	<tr>
+		<td style="<%= 'font-weight:bold;' if a.has_children? %>"><%= a.name %></td>
+		<td align="right"><%= link_to 'Add Subcategory', new_admin_category_path(:parent => a) %> | <%= link_to 'Edit', edit_admin_category_path(a) %> | <%= link_to 'Destroy', admin_category_path(a), :confirm => 'Are you sure?', :method => :delete %></td>
+	</tr>
+	<% a.children.each do |b| -%>
+		<tr>
+			<td style="<%= 'font-weight:bold;' if b.has_children? %>padding-left:15px;"><%= b.name %></td>
+			<td align="right"><%= link_to 'Add Subcategory', new_admin_category_path(:parent => b) %> | <%= link_to 'Edit', edit_admin_category_path(b) %> | <%= link_to 'Destroy', admin_category_path(b), :confirm => 'Are you sure?', :method => :delete %></td>
+		</tr>
+		<% b.children.each do |c| -%>
+			<tr>
+				<td style="<%= 'font-weight:bold;' if c.has_children? %>padding-left:25px;"><%= c.name %></td>
+				<td align="right"><%= link_to 'Add Subcategory', new_admin_category_path(:parent => c) %> | <%= link_to 'Edit', edit_admin_category_path(c) %> | <%= link_to 'Destroy', admin_category_path(c), :confirm => 'Are you sure?', :method => :delete %></td>
+			</tr>
+			<% c.children.each do |d| -%>
+				<tr>
+					<td style="<%= 'font-weight:bold;' if d.has_children? %>padding-left:35px;"><%= d.name %></td>
+					<td align="right"><%= link_to 'Edit', edit_admin_category_path(d) %> | <%= link_to 'Destroy', admin_category_path(d), :confirm => 'Are you sure?', :method => :delete %></td>
+				</tr>
+			<% end -%>
+		<% end -%>
+	<% end -%>
+<% end -%>
+</table>
+
+<br/>
+<%= link_to "New Root Category", new_admin_category_path %>

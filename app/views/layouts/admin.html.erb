@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
   <title>Sample Online Store</title>
@@ -21,12 +20,33 @@
     <div id="side">
       <% if session[:user_id] -%>
       <ul id="navigation">
+        <li><%= link_to "Admin Home", admin_root_path %></li>
+        <li>&nbsp;</li>
+				<h4 style="margin: 0; color: #777; border-bottom: 1px solid #CCC;">Processing</h4>
         <li><%= link_to "Orders (#{Order.active.count} active)", :controller => '/admin/orders' %></li>
         <li>&nbsp;</li>
-        <li><%= link_to "Products", :controller => '/admin/products' %> (<%= link_to "+Add", :controller => '/admin/products', :action => 'new' %>)</li>
+
+				<h4 style="margin: 0; color: #777; border-bottom: 1px solid #CCC;">Products</h4>
+				 <% Category.roots.each do |a| -%>
+				 	<div style="font-weight:bold; padding-top: 5px;"><%= link_to a.name, admin_products_path(:category => a) %> <%= "(#{a.products.count})" unless a.products.empty? %></div>
+				 	<% a.children.each do |b| -%>
+						<div style="padding-top: 5px;<%= "font-weight:bold;" if b.has_children? %>padding-left:15px;"><%= link_to b.name, admin_products_path(:category => b) %> <%= "(#{b.products.count})" unless b.products.empty? %></div>
+				 		<% b.children.each do |c| -%>
+							<div style="padding-top: 5px;<%= "font-weight:bold;" if c.has_children? %>padding-left:25px;"><%= link_to c.name, admin_products_path(:category => c) %> <%= "(#{c.products.count})" unless c.products.empty? %></div>
+							<% c.children.each do |d| -%>
+				 				<div style="padding-top: 5px;<%= "font-weight:bold;" if d.has_children? %>padding-left:35px;"><%= link_to d.name, admin_products_path(:category => d) %> <%= "(#{d.products.count})" unless d.products.empty? %></div>
+				 			<% end -%>
+				 		<% end -%>
+				 	<% end -%>
+				 <% end -%>
+				<li>&nbsp;</li>
+
+				<h4 style="margin: 0; color: #777; border-bottom: 1px solid #CCC;">Store Settings</h4>
+        <li><%= link_to "Manage Categories", :controller => '/admin/categories' %></li>
         <li><%= link_to "Manage Users", :controller => '/admin/users' %></li>
-        <li><%= link_to 'Enter Store', {:controller => '/public/main'}, :target => '_blank' %></li>
         <li>&nbsp;</li>
+
+        <li><%= link_to 'Enter Store', {:controller => '/public/main'}, :target => '_blank' %></li>
         <li><%= link_to "Logout", :controller => '/admin/main', :action => 'logout' %></li>
       </ul>
       <% end -%>

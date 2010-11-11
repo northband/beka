@@ -1,6 +1,12 @@
 <div id="product-list">
-	<h1>Listing products</h1>
-	<p><%= link_to 'New product', new_admin_product_path, :class => 'add_link' %></p>
+	<h1>Listing products <%= "(#{@category.name})" if @category %></h1>
+
+	<% if @category -%>
+		<% if @category.is_childless? -%>
+			<p><%= link_to 'New product', {:action => 'new', :category => params[:category]}, :class => 'add_link' %></p>
+		<% end -%>
+	<% end -%>
+
 	<table width="100%">
 	<% @products.each do |product| %>
 		<tr class="<%= cycle('odd', 'even') %>">

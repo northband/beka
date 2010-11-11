@@ -15,9 +15,11 @@ Rails::Initializer.run do |config|
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
-  config.gem "aws-s3", :version => ">= 0.6.2", :lib => "aws/s3"
-  config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
-  config.gem "haml", :version => ">= 3.0.23"
+  config.gem "aws-s3", :version => ">= 0.6.2", :lib => "aws/s3", :source => "http://gemcutter.org"
+  config.gem 'will_paginate', :version => '~> 2.3.11', :source => "http://gemcutter.org"
+  config.gem "haml", :version => ">= 3.0.23", :source => "http://gemcutter.org"
+  config.gem "ancestry", :version => ">= 1.2.3", :source => 'http://gemcutter.org'
+  config.gem "friendly_id", :version => "~> 3.1", :source => 'http://gemcutter.org'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named

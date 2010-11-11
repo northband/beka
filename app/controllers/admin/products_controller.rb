@@ -1,7 +1,13 @@
 class Admin::ProductsController < Admin::MainController
 
   def index
-    @products = Product.all.paginate(:page => params[:page])
+    @category = Category.find(params[:category]) if params[:category]
+    @products = if @category
+      categories = @category.subtree_ids
+      Product.has_categories(categories).paginate(:page => params[:page])
+    else
+      Product.all.paginate(:page => params[:page])
+    end
   end
 
   def show
@@ -10,8 +16,6 @@ class Admin::ProductsController < Admin::MainController
 
   def new
     @product = Product.new
-    #@product.product_images.build
-    #3.times { @product.product_images.build }
   end
 
   def edit
@@ -26,10 +30,11 @@ class Admin::ProductsController < Admin::MainController
   def create
     if request.post?
       @product = Product.new(params[:product])
+      @product.category_id = params[:category] if params[:category]
       if @product.save
-        redirect_to :action => 'index'
+        redirect_to new_admin_product_image_path(:id => @product)
       else
-         render :action => "new"
+        render :action => "new"
       end
     end
   end

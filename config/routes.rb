@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.namespace :admin do |admin|
     admin.resources :products
     admin.resources :product_images
+    admin.resources :categories
     admin.resources :users
     admin.resources :orders
   end
