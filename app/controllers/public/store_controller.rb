@@ -1,7 +1,13 @@
 class Public::StoreController < Public::MainController
 
   def index
-    @products = Product.find_products_for_sale
+    @category = Category.find(params[:category]) if params[:category]
+    @products = if @category
+      categories = @category.subtree_ids
+      Product.find_products_for_sale.has_categories(categories).paginate(:page => params[:page])
+    else
+      Product.find_products_for_sale.paginate(:page => params[:page])
+    end
   end
 
   def add_to_cart

@@ -1,7 +1,7 @@
 %h1 Your Product List
 - for p in @products
   %div.entry
-    = link_to(p.product_images.first.photo.url(:small) ? image_tag(p.product_images.first.photo.url(:small)) : image_tag("no_image_small.jpg", :class => 'thumbnail'), :action => 'show', :id => p)
+    = link_to(!p.product_images.empty? ? image_tag(p.product_images.first.photo.url(:small)) : image_tag("no_image_small.jpg", :class => 'thumbnail'), :action => 'show', :id => p)
     %h3= link_to h(p.title), :action => 'show', :id => p
     = truncate(p.description, :length => 100)
     %br/

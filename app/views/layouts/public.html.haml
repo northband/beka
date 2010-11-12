@@ -22,7 +22,7 @@
             %b
               = number_to_currency(@cart.total_price)
               %br/
-              = link_to "View Cart", :action => 'cart'
+              = link_to "View Cart", :controller => '/public/store', :action => 'cart'
 
       %div.clear
 
