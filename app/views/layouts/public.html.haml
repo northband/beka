@@ -8,11 +8,11 @@
 
   %body#store
 
-    %div#main_heading
-      %div#logo_title Sample Online Store
+    #main_heading
+      #logo_title Sample Online Store
 
       - unless params[:action] == 'cart'
-        %div#cart_info
+        #cart_info
           - unless @cart.cart_items.empty?
             Total Items:
             %b
@@ -24,17 +24,27 @@
               %br/
               = link_to "View Cart", :controller => '/public/store', :action => 'cart'
 
-      %div.clear
+      .clear
 
-    %div#columns
-      %div#side
+    #columns
+      #side
+        = link_to 'Home', :controller => '/public/main'
+        .product_categories
+          - Category.roots.each do |a|
+            .first_tier= link_to a.name, :controller => '/public/store', :category => a
+            - a.children.each do |b|
+              .second_tier= link_to b.name, :controller => '/public/store', :category => b
+              - b.children.each do |c|
+                .third_tier= link_to c.name, :controller => '/public/store', :category => c
+                - c.children.each do |d|
+                  .fourth_tier= link_to d.name, :controller => '/public/store', :category => d
+
         %ul#navigation
-          %li= link_to 'Home', :controller => '/public/main'
-          %li= link_to 'Store', :controller => '/public/store', :action => 'index'
           %li= link_to 'About Us', :controller => '/public/main', :action => 'about_us'
           %li= link_to 'Contact Us', :controller => '/public/main', :action => 'contact_us'
-      %div#main
+        
+      #main
         - if flash[:notice]
-          %div#notice
+          #notice
             = flash[:notice]
         = yield :layout

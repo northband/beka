@@ -11,8 +11,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'admin/:action/:id',          :controller => 'admin/main'
   map.admin_root 'admin', :controller => 'admin/main'
 
-  # Public Routes
+  # Store Routes
   map.connect 'store/:action/:id', :controller => 'public/store'
+
+  # Public Routes
   map.connect ':action/:id', :controller => 'public/main'
 
   # Resource routes
@@ -20,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Root Route
   map.root :controller => '/public/main', :action => 'index'
+
 
 
 
