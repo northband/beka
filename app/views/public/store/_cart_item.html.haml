@@ -1,4 +1,4 @@
-%tr
+%tr.cart_item
   %td
     = cart_item.product.product_images.first.photo.url(:small) ? image_tag(cart_item.product.product_images.first.photo.url(:small)) : image_tag("no_image_small.jpg", :class => 'thumbnail')
   %td

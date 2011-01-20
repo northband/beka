@@ -4,10 +4,6 @@ class Admin::ProductImagesController < Admin::MainController
     @product_image = ProductImage.find(params[:id])
     render :layout => 'simple'
   end
-
-  def edit
-    @product = Product.find(params[:id])
-  end
   
   def new
     @product_image = ProductImage.new
@@ -27,20 +23,11 @@ class Admin::ProductImagesController < Admin::MainController
     end
   end
 
-  def update
-    @product = Product.find(params[:id])
-    if @product.update_attributes(params[:product])
-      redirect_to :action => 'index'
-      flash[:notice] = 'Product was successfully updated.'
-    else
-      render :action => "edit"
-    end
-  end
-
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-    redirect_to(admin_products_url)
+    @product_image = ProductImage.find(params[:id])
+    @product_image.destroy
+    redirect_to :back
+    # redirect_to(admin_products_url)
   end
 
 end

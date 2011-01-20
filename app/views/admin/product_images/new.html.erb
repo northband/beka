@@ -15,7 +15,7 @@
 <hr/>
 
 <% @product.product_images.each do |i| -%>
-	<%= view_image(i) %><br />
+	<%= view_image(i) %> <%= link_to 'Delete', admin_product_image_path(i), :confirm => 'Are you sure', :method => :delete %><br />
 <% end -%>
 
 <br/>

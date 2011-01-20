@@ -1,16 +1,15 @@
 %h1 Your Cart
 
 %table(width="100%")
-  %tr
+  %tr.cart_header
     %th
     %th Qty
     %th Name
     %th Price
+    %th
   = render :partial => 'cart_item', :collection => @cart.cart_items
   %tr
-    %td(style="border-bottom: 1px solid #DDD;" colspan="4")
-  %tr
-    %td(colspan="3" style="text-align: right;")
+    %td(colspan="4" style="text-align: right;")
     %td
       %p
         Total Items:
@@ -19,7 +18,7 @@
         Total Price:
         %b= number_to_currency(@cart.total_price)
       = button_to 'Checkout', :action => :checkout
-
+%hr/
 %p= button_to 'Keep Shopping', :action => :index
 %br/
 %p= button_to 'Empty Cart', :action => :empty_cart
