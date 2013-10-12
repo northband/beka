@@ -1,5 +1,6 @@
 class ProductImage < ActiveRecord::Base
 
+  # Associations
   belongs_to :product
 
   has_attached_file :photo, 
@@ -11,7 +12,5 @@ class ProductImage < ActiveRecord::Base
     
   validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 5.megabytes
-
-
 
 end

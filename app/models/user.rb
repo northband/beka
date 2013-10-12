@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :password_confirmation
 
+  # Validations
   validates_presence_of :name, :email
   validates_uniqueness_of :name, :email
   validates_confirmation_of :password

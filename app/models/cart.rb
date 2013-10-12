@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
 
+  # Associations
   has_many :cart_items
 
   def add_product(product)

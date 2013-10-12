@@ -1,5 +1,6 @@
 class CartItem < ActiveRecord::Base
 
+  # Associations
   belongs_to :cart, :dependent => :destroy
   belongs_to :order
   belongs_to :product
